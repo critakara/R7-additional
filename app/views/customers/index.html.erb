@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Customers</h1>
+<div class="container mx-3">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+	<th>Name</th>
+	<th>Number of Orders</th>
+	<th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div id="customers">
+	<tr>
+  <% @customers.each do |customer| %>
+  <%= render "deleteModal", customer: customer %>
+  <td><%= icon('fa-regular', 'user') %></td>
+  <td><%= customer.first_name %> <%= customer.last_name %></td>
+  <td><%= customer.orders.count %></td>
+    <td>
+      <%= link_to "Show this customer", customer, class: "btn btn-outline-primary mx-1" %>
+    </td>
+  <td>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id%>">
+      </td>
+  <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New customer", new_customer_path, class: "btn btn-primary mx-1" %>
