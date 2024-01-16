@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :customer, style: "display: block" %>
-    <%= form.collection_select :customer_id, Customer.all, :id, full_name, include_blank: true %>
+    <%= form.collection_select :customer_id, Customer.all, :id, :full_name, include_blank: true %>
   </div>
 
   <div>

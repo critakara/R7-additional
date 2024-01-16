@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
   before_action :set_order, only: %i[ show edit update destroy ]
+  
   def index
     @orders = Order.all
   end
@@ -51,12 +52,12 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:first_name, :last_name, :phone, :email)
+      params.require(:order).permit(:customer_id, :product_name, :product_count)
     end
     
     def catch_not_found(e)
       Rails.logger.debug("We had a not found exception.")
       flash.alert = e.to_s
-      redirect_to customers_path
+      redirect_to orders_path
     end
 end
